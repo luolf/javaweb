@@ -17,13 +17,13 @@ public class MyThowsAdvice implements ThrowsAdvice {
         System.out.println(ex);
         System.out.println("我的MyThowsAdvice通知处理结束0");
     }
-//    public void afterThrowing(RemoteException ex) throws Throwable {
-//        System.out.println("我的MyThowsAdvice通知");
-//        System.out.println(ex);
-//        System.out.println("我的MyThowsAdvice通知处理结束");
-//    }
+    public void afterThrowing(Exception ex) throws Throwable {
+        System.out.println("我的MyThowsAdvice通知RemoteException");
+        System.out.println(ex);
+        System.out.println("我的MyThowsAdvice通知处理结束RemoteException");
+    }
 //
-//    public void afterThrowing2(Method m, Object[] args, Object target, ServletException ex) {
+//    public void afterThrowing(Method m, Object[] args, Object target, Exception ex) {
 //        System.out.println("我的MyThowsAdvice通知2");
 //        System.out.println(m);
 //        System.out.println(args);
