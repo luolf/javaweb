@@ -19,7 +19,7 @@
         <aop:advisor advice-ref="beforeAdvice" pointcut-ref="mypoint"/>
         <aop:advisor advice-ref="afterAdvice" pointcut-ref="mypoint"/>
 
-        <!--异常通知处理1-->
+        <!--异常通知处理1，需要实现接口ThrowsAdvice-->
         <aop:advisor advice-ref="throwing" pointcut-ref="mypoint"/>
         <!--异常通知处理2-->
         <aop:aspect ref="throwing">
