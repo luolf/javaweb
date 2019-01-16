@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="frw" class="org.spring.beans.bo.Framework"/>
+    <bean id="beforeAdvice" class="org.spring.aop.advice.MyBeforeAdvice"/>
+    <bean id="afterAdvice" class="org.spring.aop.advice.MyAfterAdvice"/>
+    <aop:config>
+        <aop:pointcut id="mypoint" expression="execution(* org.spring.beans.bo.Framework.getId())"/>
+        <aop:advisor advice-ref="beforeAdvice" pointcut-ref="mypoint"/>
+        <aop:advisor advice-ref="afterAdvice" pointcut-ref="mypoint"/>
+        <aop:aspect ref="throwing">
+            <aop:after-throwing method="afterThrowing5"  pointcut-ref="mypoint" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
+    <bean id="throwing" class="org.spring.aop.advice.MyThowsAdvice"/>
+    <aop:config>
+        <aop:aspect ref="throwing">
+            <aop:pointcut id="mypoint1" expression="execution(* org.spring.beans.bo.Framework.getId())"/>
+            <aop:after-throwing method="afterThrowing0"  pointcut-ref="mypoint1" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
