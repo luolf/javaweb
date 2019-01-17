@@ -1,6 +1,7 @@
 package org.spring.main;
 
 import org.spring.beans.bo.Framework;
+import org.spring.controller.Demo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -8,6 +9,7 @@ public class MySpring {
     public static void main(String[] args){
         ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
         Framework framework= applicationContext.getBean("frw",Framework.class);
+        Demo demo= applicationContext.getBean("demo",Demo.class);
 //        for(String s:applicationContext.getBeanDefinitionNames()){
 //            System.out.println(s);
 //        }
@@ -21,5 +23,7 @@ public class MySpring {
             System.out.println("调用getId异常");
         }
 
+        System.out.println("-------------------------------------");
+        demo.sayHello(demo.getName());
     }
 }

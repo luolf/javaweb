@@ -8,22 +8,48 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="frw" class="org.spring.beans.bo.Framework"/>
+    <bean id="demo" class="org.spring.controller.Demo"/>
+
+    <!--实现接口MethodBeforeAdvice-->
     <bean id="beforeAdvice" class="org.spring.aop.advice.MyBeforeAdvice"/>
+    <!--实现接口AfterReturningAdvice-->
     <bean id="afterAdvice" class="org.spring.aop.advice.MyAfterAdvice"/>
+    <!--实现接口ThrowsAdvice-->
+    <bean id="throwing" class="org.spring.aop.advice.MyThowsAdvice"/>
+    <!--实现接口org.springframework.cglib.proxy.MethodInterceptor -->
+    <bean id="myMethodInterceptor" class="org.spring.aop.advice.MyMethodInterceptor"/>
+    <!--实现接口org.aopalliance.intercept.MethodInterceptor-->
+    <bean id="myMethodInterceptorAliance" class="org.spring.aop.advice.MyMethodInterceptorAliance"/>
+
+
+    <bean id="myAsceptHandle" class="org.spring.aop.advice.aspect.MyAsceptHandle"/>
+
+    <aop:config>
+        <!--异常通知处理3-->
+        <aop:aspect ref="myAsceptHandle">
+            <!--<aop:pointcut id="mypoint1" expression="execution(* org.spring.beans.bo.Framework.getId())"/>-->
+            <aop:pointcut id="demopoint1" expression="execution(* org.spring.controller.Demo.sayHello(..))"/>
+            <aop:after-throwing method="afterThrowing"  pointcut-ref="demopoint1" throwing="ex"/>
+            <aop:around method="arround" pointcut-ref="demopoint1"/>
+
+        </aop:aspect>
+    </aop:config>
+
     <aop:config>
         <aop:pointcut id="mypoint" expression="execution(* org.spring.beans.bo.Framework.getId())"/>
+        <aop:pointcut id="demopoint" expression="execution(* org.spring.controller.Demo.sayHello(..))"/>
         <aop:advisor advice-ref="beforeAdvice" pointcut-ref="mypoint"/>
-        <aop:advisor advice-ref="afterAdvice" pointcut-ref="mypoint"/>
+        <aop:advisor advice-ref="afterAdvice"  pointcut-ref="mypoint"/>
+        <!--环绕通知-->
+        <aop:advisor advice-ref="myMethodInterceptorAliance"  pointcut-ref="demopoint"/>
+
+
+        <!--异常通知处理1，需要实现接口ThrowsAdvice-->
         <aop:advisor advice-ref="throwing" pointcut-ref="mypoint"/>
+        <!--异常通知处理2-->
         <aop:aspect ref="throwing">
             <aop:after-throwing method="afterThrowing5"  pointcut-ref="mypoint" throwing="ex"/>
         </aop:aspect>
-    </aop:config>
-    <bean id="throwing" class="org.spring.aop.advice.MyThowsAdvice"/>
-    <aop:config>
-        <aop:aspect ref="throwing">
-            <aop:pointcut id="mypoint1" expression="execution(* org.spring.beans.bo.Framework.getId())"/>
-            <aop:after-throwing method="afterThrowing0"  pointcut-ref="mypoint1" throwing="ex"/>
-        </aop:aspect>
+
     </aop:config>
 </beans>
