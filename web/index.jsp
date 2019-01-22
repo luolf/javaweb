@@ -9,6 +9,7 @@
 <html>
   <head>
     <title>$Title$</title>
+    <a href="/login">login</a>
   </head>
   <body>
   $END$
