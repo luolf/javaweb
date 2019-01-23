@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/*")
-public class DispatchServlet extends HttpServlet {
+//@WebServlet("/*")
+public class MyDispatchServlet extends HttpServlet {
     public static int cnt=0;
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
