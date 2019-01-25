@@ -35,10 +35,11 @@ public class AspectAnnotation {
     @Around("execution(* org.spring.controller.Demo.setName(String))")
 //    @Around("org.spring.controller.Demo.setName()")
     public Object arround(ProceedingJoinPoint joinPoint)  throws  Throwable {
-        System.out.println( "外部定义切点名：环绕通知执行方法前" );
+        System.out.println( "外部定义切点名：环绕通知执行方法前"+joinPoint.getSignature().getName() );
         // 手动执行目标方法
         Object obj = joinPoint.proceed();
-        System.out.println( "外部定义切点名：环绕通知执行方法后" );
+
+        System.out.println( "外部定义切点名：环绕通知执行方法后"+joinPoint.getSignature().getName());
         return  obj;
     }
 

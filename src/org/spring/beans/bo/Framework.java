@@ -1,5 +1,8 @@
 package org.spring.beans.bo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Framework {
     Long id;
     String name;

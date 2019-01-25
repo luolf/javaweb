@@ -9,9 +9,12 @@
 <html>
   <head>
     <title>$Title$</title>
-    <a href="/login">login</a>
+    <a href="/test">test</a>
+    <a href="/test2">test2</a>
+    <a href="/test3">test3</a>
   </head>
   <body>
+  {{myName}}
   $END$
   </body>
 </html>
