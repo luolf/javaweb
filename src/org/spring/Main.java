@@ -17,9 +17,9 @@ public class Main {
         ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
         Framework framework= applicationContext.getBean("framework",Framework.class);
         Demo demo= applicationContext.getBean("demo",Demo.class);
-//        for(String s:applicationContext.getBeanDefinitionNames()){
-//            System.out.println(s);
-//        }
+        for(String s:applicationContext.getBeanDefinitionNames()){
+            System.out.println(s);
+        }
         //自己创建的对象不会被aop
 //        Framework framework=new   Framework();
         framework.setId(1L);
@@ -31,6 +31,7 @@ public class Main {
         }
 
         System.out.println("-------------------------------------");
+        demo.setName("luolf");
         demo.sayHello(demo.getName());
     }
 }
