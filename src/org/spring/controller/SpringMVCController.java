@@ -22,7 +22,6 @@ public class SpringMVCController {
         System.out.println("httpServletRequest="+httpServletRequest);
         System.out.println("httpServletSession="+httpServletRequest.getSession());
         model.addAttribute("country","中国");
-
         return "/index.jsp";
     }
 }

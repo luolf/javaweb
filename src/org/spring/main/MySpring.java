@@ -4,6 +4,7 @@ import org.spring.beans.bo.Framework;
 import org.spring.controller.Demo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 public class MySpring {
     public static void main(String[] args){
